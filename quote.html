@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Get a Quote | BrodieInsures</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="site.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav><a class="logo" href="index.html">brodie<span class="blue">insures.</span></a>
+            <div class="links"><a href="index.html">Home</a>
+                <div class="dropdown"><a href="coverage.html">Insurance</a><button class="drop-toggle"
+                        aria-label="Show insurance pages" aria-expanded="false">▾</button>
+                    <div class="dropmenu"><a href="home.html">Homeowners Insurance</a><a href="auto.html">Auto
+                            Insurance</a><a href="rental.html">Rental Insurance</a><a href="umbrella.html">Umbrella
+                            Insurance</a><a href="business.html">Business Insurance</a></div>
+                </div><a href="about.html">About Me</a><a href="resources.html">Resources</a><a href="testimonials.html">Testimonials</a><a
+                    href="contact.html">Contact</a>
+            </div><a class="btn" href="quote.html">Get a Quote ↗</a>
+        </nav>
+    </header>
+    <main>
+        <section class="pagehead">
+            <div class="wrap"><span class="eyebrow">Start here</span>
+                <h1>Request your free quote.</h1>
+                <p>Tell me a little about yourself and the coverage you are looking for.</p>
+            </div>
+        </section>
+        <div class="wrap section quote-layout">
+            <form id="lead" class="panel coverage-article quote-form" method="post"
+                action="https://formspree.io/f/xbgoqeeq" data-thank-you="thank-you.html"
+                aria-describedby="quote-submission-note">
+                <fieldset>
+                    <legend>Coverage details</legend>
+                    <label for="type">Insurance type</label>
+                    <select id="type" name="coverage" required>
+                        <option value="">Select coverage</option>
+                        <option>Homeowners</option>
+                        <option>Auto</option>
+                        <option value="Rental">Renters</option>
+                        <option>Umbrella</option>
+                        <option>Business</option>
+                    </select>
+                    <div id="homeowners-address" hidden>
+                        <label for="property-address">Property address</label>
+                        <input id="property-address" name="propertyAddress" type="text"
+                            placeholder="Street address, city, state, ZIP" disabled>
+                    </div>
+                    <label for="quote-message">What would you like to insure? <span>(optional)</span></label>
+                    <textarea id="quote-message" name="message" rows="4"
+                        placeholder="For example, I’m buying a home and close next month."></textarea>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contact information</legend>
+                    <div class="formgrid">
+                        <label>First name <input name="first" required autocomplete="given-name"></label>
+                        <label>Last name <input name="last" required autocomplete="family-name"></label>
+                        <label>Email address <input name="email" type="email" required autocomplete="email"></label>
+                        <label>Phone number <span>(optional)</span>
+                            <input name="phone" type="tel" autocomplete="tel">
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="quote-form-footer">
+                    <p id="quote-submission-note">Formspree processes this request for Brodie.
+                        Leave out Social Security numbers, payment details, and other sensitive information.</p>
+                    <button class="btn" type="submit">Send Quote Request</button>
+                    <div role="status" data-submission-status></div>
+                </div>
+            </form>
+
+            <aside class="quote-sidebar" aria-label="Quote request guidance">
+                <section class="panel coverage-article">
+                    <h2>What to have handy</h2>
+                    <ul>
+                        <li>Your target start date or any closing, move-in, or renewal deadline.</li>
+                        <li>A short description of the property, vehicle, or business you want to insure.</li>
+                        <li>Your current policy limits and deductibles, if you’re comparing coverage.</li>
+                    </ul>
+                </section>
+                <section class="panel coverage-article">
+                    <h2>What happens next?</h2>
+                    <ol class="quote-next-steps">
+                        <li><strong>I’ll review your request.</strong> I’ll look at the coverage you selected
+                            and any dates or details you included.</li>
+                        <li><strong>I’ll follow up if I need more information.</strong> For a home quote,
+                            that might mean asking about recent updates or how the property is used.</li>
+                        <li><strong>We’ll go over your options.</strong> I’ll explain the differences in
+                            limits, deductibles, and price so you can decide what fits.</li>
+                    </ol>
+                </section>
+            </aside>
+        </div>
+    </main>
+    <footer>
+        <div class="wrap footerrow"><span>© 2026 BrodieInsures <span class="footer-credit">· Built &amp; Maintained by AgentSites.cc</span></span><span>California Insurance Specialist</span></div>
+        <div class="wrap"><small>Website preview. Agency affiliation, licensing disclosures, contact details and privacy
+                notice must be confirmed before publication. Coverage subject to policy terms and eligibility.</small>
+        </div>
+    </footer>
+</body>
+
+</html>

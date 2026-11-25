@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Testimonials | BrodieInsures</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="site.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav><a class="logo" href="index.html">brodie<span class="blue">insures.</span></a>
+            <div class="links"><a href="index.html">Home</a>
+                <div class="dropdown"><a href="coverage.html">Insurance</a><button class="drop-toggle"
+                        aria-label="Show insurance pages" aria-expanded="false">▾</button>
+                    <div class="dropmenu"><a href="home.html">Homeowners Insurance</a><a href="auto.html">Auto
+                            Insurance</a><a href="rental.html">Rental Insurance</a><a href="umbrella.html">Umbrella
+                            Insurance</a><a href="business.html">Business Insurance</a></div>
+                </div><a href="about.html">About Me</a><a href="resources.html">Resources</a><a href="testimonials.html" aria-current="page">Testimonials</a><a
+                    href="contact.html">Contact</a>
+            </div><a class="btn" href="quote.html">Get a Quote ↗</a>
+        </nav>
+    </header>
+    <main>
+        <section class="pagehead">
+            <div class="wrap">
+                <h1>Testimonials</h1>
+                <p>Read what clients share about working with Brodie, or tell me about your own experience.</p>
+            </div>
+        </section>
+
+        <div class="wrap section testimonials-layout">
+            <section aria-labelledby="reviews-heading">
+                <h2 id="reviews-heading">Client reviews</h2>
+                <div id="approved-reviews">
+                    <article class="panel coverage-article">
+                        <h3>Shaylie P.</h3>
+                        <blockquote>
+                            <p>I’ve had the opportunity to work with Brodie, and I can confidently say he’s one
+                                of the most reliable and knowledgeable insurance brokers you’ll come across.</p>
+                            <details class="review-more">
+                                <summary>Read full review</summary>
+                                <p>He takes his time to actually understand your situation instead of pushing
+                                    generic policies, which makes a huge difference when you’re making important
+                                    financial decisions.</p>
+                                <p>What stands out most is his professionalism and attention to detail. He explains
+                                    everything clearly, makes sure you know exactly what you’re getting, and
+                                    always looks for the best possible coverage at a fair rate.</p>
+                                <p>If you’re looking for someone who’s trustworthy, responsive, and knows the
+                                    insurance space inside and out, I’d highly recommend working with him.</p>
+                            </details>
+                        </blockquote>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel coverage-article review-panel" aria-labelledby="review-heading">
+                <h2 id="review-heading">Leave a Review</h2>
+                <p id="review-note">Reviews are reviewed before publication. Your email stays private.</p>
+
+                <form action="https://formspree.io/f/xbgoqeeq" method="post"
+                    data-thank-you="thank-you.html?submission=review" aria-describedby="review-note">
+                    <input type="hidden" name="submissionType" value="Testimonial for approval">
+                    <div class="formgrid">
+                        <label>First Name <input name="firstName" autocomplete="given-name" maxlength="60" required></label>
+                        <label>Last Name <input name="lastName" autocomplete="family-name" maxlength="60" required></label>
+                    </div>
+                    <label>Email <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+                    <div class="formgrid">
+                        <label>City (optional) <input name="city" autocomplete="address-level2" maxlength="80"></label>
+                        <label>Rating
+                            <select name="rating" required>
+                                <option value="">Select a rating</option>
+                                <option value="5">5 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="2">2 stars</option>
+                                <option value="1">1 star</option>
+                            </select>
+                        </label>
+                    </div>
+                    <label>How was your experience?
+                        <textarea name="review" rows="5" maxlength="2000" required></textarea>
+                    </label>
+                    <label class="review-permission">
+                        <input name="publicationPermission" type="checkbox" value="Yes" required>
+                        <span>I give BrodieInsures permission to publish my review, rating, first name,
+                            last initial, and city if approved.</span>
+                    </label>
+                    <button class="btn" type="submit">Submit Review</button>
+                    <div role="status" data-submission-status></div>
+                </form>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="wrap footerrow"><span>© 2026 BrodieInsures <span class="footer-credit">· Built &amp; Maintained by AgentSites.cc</span></span><span>California Insurance Specialist</span></div>
+        <div class="wrap"><small>Website preview. Agency affiliation, licensing disclosures, contact details and privacy
+                notice must be confirmed before publication. Coverage subject to policy terms and eligibility.</small>
+        </div>
+    </footer>
+</body>
+
+</html>
