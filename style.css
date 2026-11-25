@@ -640,17 +640,8 @@ a:focus-visible, button:focus-visible {
 }
 
 #approved-reviews blockquote p {
-    margin-block: 6px 0;
-}
-
-.review-more {
-    padding: 8px 0 0;
-    border-bottom: 0;
-}
-
-.review-more summary {
-    color: var(--accent);
-    font-size: 0.875rem;
+    margin-block: 8px 0;
+    font: 0.9375rem/1.55 Georgia, "Times New Roman", serif;
 }
 
 .review-panel {
