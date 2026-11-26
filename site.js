@@ -1,3 +1,7 @@
+if (location.protocol === 'file:' || !('onpagereveal' in window)) {
+    document.documentElement.classList.add('page-enter');
+}
+
 document.querySelectorAll('.drop-toggle').forEach(button => {
     button.addEventListener('click', () => {
         const dropdown = button.closest('.dropdown');
@@ -48,8 +52,23 @@ document.querySelectorAll('form[data-thank-you]').forEach(submissionForm => {
 
         button.disabled = true;
         status.textContent = 'Sending…';
+        const dashboardConfigured = typeof reviewsApi !== 'undefined' && reviewsApi.configured;
+        const useReviewQueue = dashboardConfigured && submissionForm.hasAttribute('data-review-form');
+        const checkQuoteQueue = dashboardConfigured && submissionForm.id === 'lead';
 
         try {
+            if (checkQuoteQueue && await reviewsApi.quoteDashboardReady()) {
+                await reviewsApi.submitQuote(new FormData(submissionForm));
+                window.location.assign(submissionForm.dataset.thankYou);
+                return;
+            }
+
+            if (useReviewQueue) {
+                await reviewsApi.submit(new FormData(submissionForm));
+                window.location.assign(submissionForm.dataset.thankYou);
+                return;
+            }
+
             const response = await fetch(submissionForm.action, {
                 method: submissionForm.method,
                 body: new FormData(submissionForm),
@@ -66,8 +85,12 @@ document.querySelectorAll('form[data-thank-you]').forEach(submissionForm => {
                 ? 'Too many requests. Please wait a moment before trying again.'
                 : result.errors?.map(error => error.message).filter(Boolean).join(' ')
                     || 'Your submission could not be accepted. Please check your details and try again.';
-        } catch {
-            status.textContent = 'We couldn’t confirm your submission. Please check your connection.';
+        } catch (error) {
+            status.textContent = (useReviewQueue || checkQuoteQueue) && error.status === 429
+                ? 'Too many requests. Please wait a moment before trying again.'
+                : (useReviewQueue || checkQuoteQueue) && error.status === 400
+                    ? 'Please check that each required field is filled in and try again.'
+                    : 'We couldn’t confirm your submission. Please check your connection.';
         }
 
         button.disabled = false;

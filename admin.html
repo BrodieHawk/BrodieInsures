@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https:; base-uri 'none'; form-action 'none'">
+    <title>Administration | BrodieInsures</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="site.js" defer></script>
+    <script src="reviews-config.js" defer></script>
+    <script src="reviews-api.js" defer></script>
+    <script src="admin-analytics.js" defer></script>
+    <script src="reviews-admin.js" defer></script>
+</head>
+<body class="admin-page">
+    <header>
+        <nav aria-label="Site administration">
+            <a class="logo" href="index.html">brodie<span class="blue">insures.</span></a>
+            <a href="testimonials.html">View testimonials</a>
+        </nav>
+    </header>
+    <main>
+        <section class="pagehead admin-hero">
+            <div class="wrap"><h1>BrodieInsures <span>Administration</span></h1></div>
+        </section>
+        <div class="wrap section review-admin">
+            <p id="admin-status" role="status" aria-live="polite"></p>
+            <noscript><p>Enable JavaScript to sign in and manage submissions.</p></noscript>
+            <form id="admin-login" class="panel coverage-article review-panel" hidden>
+                <h2>Sign in</h2>
+                <label>Email <input name="email" type="email" autocomplete="username" required></label>
+                <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+                <button class="btn" type="submit">Sign in</button>
+            </form>
+            <section id="admin-queue" aria-labelledby="queue-heading" hidden>
+                <div class="review-admin-toolbar admin-overview-header">
+                    <h2 id="queue-heading">Overview</h2>
+                    <div class="review-admin-actions">
+                        <button class="btn secondary" id="refresh-reviews" type="button">Refresh all</button>
+                        <button class="btn" id="admin-logout" type="button">Sign out</button>
+                    </div>
+                </div>
+                <div class="admin-workspace">
+                    <aside class="admin-insights" aria-labelledby="admin-insights-heading">
+                        <h2 id="admin-insights-heading">At a glance</h2>
+                        <dl class="admin-metrics">
+                            <div><dt>Pending reviews</dt><dd data-admin-metric="pending">—</dd></div>
+                            <div><dt>Published reviews</dt><dd data-admin-metric="published">—</dd></div>
+                            <div><dt>New quotes</dt><dd data-admin-metric="new">—</dd></div>
+                            <div><dt>Quotes in progress</dt><dd data-admin-metric="in-progress">—</dd></div>
+                            <div><dt>Quotes won</dt><dd data-admin-metric="won">—</dd></div>
+                            <div><dt>Total quotes</dt><dd data-admin-metric="total-quotes">—</dd></div>
+                        </dl>
+                        <p id="admin-metrics-status" role="status" hidden></p>
+                        <div class="admin-analytics admin-jumps" aria-label="Jump to dashboard section">
+                            <a href="#traffic">Website traffic</a>
+                            <a href="#quotes">Quote requests</a>
+                            <a href="#reviews">Testimonials</a>
+                            <a href="https://analytics.google.com/" target="_blank" rel="noopener">Open Google Analytics</a>
+                        </div>
+                    </aside>
+                    <div class="admin-content">
+                        <section id="traffic" class="admin-work-section" aria-labelledby="traffic-heading">
+                            <div class="review-admin-toolbar admin-section-heading">
+                                <h2 id="traffic-heading">Website traffic</h2>
+                                <label>Date range
+                                    <select id="analytics-days">
+                                        <option value="7">Last 7 days</option>
+                                        <option value="30" selected>Last 30 days</option>
+                                        <option value="90">Last 90 days</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div id="website-analytics" aria-live="polite"></div>
+                        </section>
+                        <div class="admin-queues">
+                            <section id="quotes" class="admin-work-section" aria-labelledby="quotes-heading">
+                                <div class="review-admin-toolbar admin-section-heading">
+                                    <h2 id="quotes-heading" tabindex="-1">Quote requests</h2>
+                                    <label>Stage
+                                        <select id="quote-filter">
+                                            <option value="all">All stages</option>
+                                            <option value="new">New</option>
+                                            <option value="contacted">Contacted</option>
+                                            <option value="quoting">Preparing quote</option>
+                                            <option value="quote_sent">Quote sent</option>
+                                            <option value="won">Won</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div data-queue-list></div>
+                                <div class="review-admin-actions admin-pagination" data-pagination hidden>
+                                    <button class="btn secondary" data-previous type="button">Previous</button>
+                                    <span data-page></span>
+                                    <button class="btn secondary" data-next type="button">Next</button>
+                                </div>
+                            </section>
+                            <section id="reviews" class="admin-work-section" aria-labelledby="reviews-heading">
+                                <div class="review-admin-toolbar admin-section-heading">
+                                    <h2 id="reviews-heading">Testimonials</h2>
+                                    <label>Status
+                                        <select id="review-filter">
+                                            <option value="pending">Pending</option>
+                                            <option value="all">All reviews</option>
+                                            <option value="approved">Published</option>
+                                            <option value="rejected">Rejected</option>
+                                            <option value="removed">Removed</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div data-queue-list></div>
+                                <div class="review-admin-actions admin-pagination" data-pagination hidden>
+                                    <button class="btn secondary" data-previous type="button">Previous</button>
+                                    <span data-page></span>
+                                    <button class="btn secondary" data-next type="button">Next</button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footerrow">
+                <div class="site-footer-brand">
+                    <strong>© 2026 BrodieInsures</strong>
+                    <span>California Insurance License #4523741</span>
+                </div>
+                <div class="site-footer-meta">
+                    <div class="site-footer-links">
+                        <a href="contact.html">Contact</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="admin.html">Admin Login</a>
+                    </div>
+                    <span>Hosted &amp; Maintained by Agentsites.cc</span>
+                </div>
+            </div>
+            <small class="site-footer-note">Coverage is subject to policy terms, conditions, exclusions, and eligibility.
+                A quote request does not bind coverage.</small>
+        </div>
+    </footer>
+</body>
+</html>

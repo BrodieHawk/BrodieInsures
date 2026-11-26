@@ -19,7 +19,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Testimonials | BrodieInsures</title>
     <link rel="stylesheet" href="style.css">
+    <script src="reviews-config.js" defer></script>
+    <script src="reviews-api.js" defer></script>
     <script src="site.js" defer></script>
+    <script src="reviews-public.js" defer></script>
 </head>
 
 <body>
@@ -40,104 +43,122 @@
             </div><a class="btn" href="quote.html">Get a Quote ↗</a>
         </nav>
     </header>
-    <main>
-        <section class="pagehead">
-            <div class="wrap">
-                <h1>Testimonials</h1>
-                <p>Read what clients share about working with Brodie, or tell me about your own experience.</p>
-            </div>
-        </section>
-
-        <div class="wrap section testimonials-layout">
-            <section aria-labelledby="reviews-heading">
-                <h2 id="reviews-heading">Client reviews</h2>
-                <div id="approved-reviews">
-                    <article class="panel coverage-article">
-                        <h3>Colby V. · Auburn</h3>
-                        <p class="eyebrow">5 out of 5 stars</p>
-                        <blockquote>
-                            <p>Getting auto insurance for my truck through Brodie Insurance was easy and hassle-free.
-                                The entire process went smoothly, and his professionalism and customer service were
-                                excellent. He were helpful, responsive, and made sure everything was taken care of
-                                without making things complicated. I really appreciated how easy Brodie made it to get
-                                insured. Anyone looking for a professional and straightforward insurance experience
-                                should definitely go with Brodie Insures</p>
-                        </blockquote>
-                    </article>
-                    <article class="panel coverage-article">
-                        <h3>Ryan C. · Roseville</h3>
-                        <p class="eyebrow">5 out of 5 stars</p>
-                        <blockquote>
-                            <p>Brodie was great to work with. He helped me find a much better rate on my auto
-                                insurance and ended up saving me $150 a month compared to what I was paying before.
-                                The whole process was quick and easy and communication was great throughout the
-                                entire thing. It's nice working with someone who actually takes the time to find
-                                you a good deal. I definitely recommend giving him a call if you're looking to
-                                save on insurance</p>
-                        </blockquote>
-                    </article>
-                    <article class="panel coverage-article">
-                        <h3>Shaylie P.</h3>
-                        <p class="eyebrow">5 out of 5 stars</p>
-                        <blockquote>
-                            <p>I’ve had the opportunity to work with Brodie, and I can confidently say he’s one
-                                of the most reliable and knowledgeable insurance brokers you’ll come across.
-                                He takes his time to actually understand your situation instead of pushing
-                                generic policies, which makes a huge difference when you’re making important
-                                financial decisions.</p>
-                            <p>What stands out most is his professionalism and attention to detail. He explains
-                                everything clearly, makes sure you know exactly what you’re getting, and
-                                always looks for the best possible coverage at a fair rate.</p>
-                            <p>If you’re looking for someone who’s trustworthy, responsive, and knows the
-                                insurance space inside and out, I’d highly recommend working with him.</p>
-                        </blockquote>
-                    </article>
+    <div class="interior-page testimonial-page">
+        <main>
+            <section class="pagehead">
+                <div class="wrap">
+                    <h1>Testimonials</h1>
+                    <p>Read what clients share about working with Brodie, or tell me about your own experience.</p>
                 </div>
             </section>
 
-            <section class="panel coverage-article review-panel" aria-labelledby="review-heading">
-                <h2 id="review-heading">Leave a Review</h2>
-                <p id="review-note">Reviews are reviewed before publication. Your email stays private.</p>
+            <div class="wrap section testimonials-layout">
+                <section aria-labelledby="reviews-heading">
+                    <h2 id="reviews-heading">Client reviews</h2>
+                    <p id="reviews-status" role="status" hidden></p>
+                    <div id="approved-reviews" hidden>
+                        <article class="panel coverage-article">
+                            <h3>Colby V. · Auburn</h3>
+                            <p class="eyebrow">5 out of 5 stars</p>
+                            <blockquote>
+                                <p>Getting auto insurance for my truck through Brodie Insurance was easy and hassle-free.
+                                    The entire process went smoothly, and his professionalism and customer service were
+                                    excellent. He were helpful, responsive, and made sure everything was taken care of
+                                    without making things complicated. I really appreciated how easy Brodie made it to get
+                                    insured. Anyone looking for a professional and straightforward insurance experience
+                                    should definitely go with Brodie Insures</p>
+                            </blockquote>
+                        </article>
+                        <article class="panel coverage-article">
+                            <h3>Ryan C. · Roseville</h3>
+                            <p class="eyebrow">5 out of 5 stars</p>
+                            <blockquote>
+                                <p>Brodie was great to work with. He helped me find a much better rate on my auto
+                                    insurance and ended up saving me $150 a month compared to what I was paying before.
+                                    The whole process was quick and easy and communication was great throughout the
+                                    entire thing. It's nice working with someone who actually takes the time to find
+                                    you a good deal. I definitely recommend giving him a call if you're looking to
+                                    save on insurance</p>
+                            </blockquote>
+                        </article>
+                        <article class="panel coverage-article">
+                            <h3>Shaylie P.</h3>
+                            <p class="eyebrow">5 out of 5 stars</p>
+                            <blockquote>
+                                <p>I’ve had the opportunity to work with Brodie, and I can confidently say he’s one
+                                    of the most reliable and knowledgeable insurance brokers you’ll come across.
+                                    He takes his time to actually understand your situation instead of pushing
+                                    generic policies, which makes a huge difference when you’re making important
+                                    financial decisions.</p>
+                                <p>What stands out most is his professionalism and attention to detail. He explains
+                                    everything clearly, makes sure you know exactly what you’re getting, and
+                                    always looks for the best possible coverage at a fair rate.</p>
+                                <p>If you’re looking for someone who’s trustworthy, responsive, and knows the
+                                    insurance space inside and out, I’d highly recommend working with him.</p>
+                            </blockquote>
+                        </article>
+                    </div>
+                </section>
 
-                <form action="https://formspree.io/f/xbgoqeeq" method="post"
-                    data-thank-you="thank-you.html?submission=review" aria-describedby="review-note">
-                    <input type="hidden" name="submissionType" value="Testimonial for approval">
-                    <div class="formgrid">
-                        <label>First Name <input name="firstName" autocomplete="given-name" maxlength="60" required></label>
-                        <label>Last Name <input name="lastName" autocomplete="family-name" maxlength="60" required></label>
-                    </div>
-                    <label>Email <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
-                    <div class="formgrid">
-                        <label>City (optional) <input name="city" autocomplete="address-level2" maxlength="80"></label>
-                        <label>Rating
-                            <select name="rating" required>
-                                <option value="">Select a rating</option>
-                                <option value="5">5 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="2">2 stars</option>
-                                <option value="1">1 star</option>
-                            </select>
+                <section class="panel coverage-article review-panel" aria-labelledby="review-heading">
+                    <h2 id="review-heading">Leave a Review</h2>
+                    <p id="review-note">Reviews are reviewed before publication. Your email stays private.
+                        <a class="privacy-link" href="privacy.html">Privacy Policy</a></p>
+
+                    <form action="https://formspree.io/f/xbgoqeeq" method="post" data-review-form
+                        data-thank-you="thank-you.html?submission=review" aria-describedby="review-note">
+                        <input type="hidden" name="submissionType" value="Testimonial for approval">
+                        <div class="formgrid">
+                            <label>First Name <input name="firstName" autocomplete="given-name" maxlength="60" required></label>
+                            <label>Last Name <input name="lastName" autocomplete="family-name" maxlength="60" required></label>
+                        </div>
+                        <label>Email <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+                        <div class="formgrid">
+                            <label>City (optional) <input name="city" autocomplete="address-level2" maxlength="80"></label>
+                            <label>Rating
+                                <select name="rating" required>
+                                    <option value="">Select a rating</option>
+                                    <option value="5">5 stars</option>
+                                    <option value="4">4 stars</option>
+                                    <option value="3">3 stars</option>
+                                    <option value="2">2 stars</option>
+                                    <option value="1">1 star</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label>How was your experience?
+                            <textarea name="review" rows="5" maxlength="2000" required></textarea>
                         </label>
+                        <label class="review-permission">
+                            <input name="publicationPermission" type="checkbox" value="Yes" required>
+                            <span>I give BrodieInsures permission to publish my review, rating, first name,
+                                last initial, and city if approved.</span>
+                        </label>
+                        <button class="btn" type="submit">Submit Review</button>
+                        <div role="status" data-submission-status></div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footerrow">
+                <div class="site-footer-brand">
+                    <strong>© 2026 BrodieInsures</strong>
+                    <span>California Insurance License #4523741</span>
+                </div>
+                <div class="site-footer-meta">
+                    <div class="site-footer-links">
+                        <a href="contact.html">Contact</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="admin.html">Admin Login</a>
                     </div>
-                    <label>How was your experience?
-                        <textarea name="review" rows="5" maxlength="2000" required></textarea>
-                    </label>
-                    <label class="review-permission">
-                        <input name="publicationPermission" type="checkbox" value="Yes" required>
-                        <span>I give BrodieInsures permission to publish my review, rating, first name,
-                            last initial, and city if approved.</span>
-                    </label>
-                    <button class="btn" type="submit">Submit Review</button>
-                    <div role="status" data-submission-status></div>
-                </form>
-            </section>
-        </div>
-    </main>
-    <footer>
-        <div class="wrap footerrow"><span>© 2026 BrodieInsures <span class="footer-credit">· Built &amp; Maintained by AgentSites.cc</span></span><span>California Insurance Specialist</span></div>
-        <div class="wrap"><small>Website preview. Agency affiliation, licensing disclosures, contact details and privacy
-                notice must be confirmed before publication. Coverage subject to policy terms and eligibility.</small>
+                    <span>Hosted &amp; Maintained by Agentsites.cc</span>
+                </div>
+            </div>
+            <small class="site-footer-note">Coverage is subject to policy terms, conditions, exclusions, and eligibility.
+                A quote request does not bind coverage.</small>
         </div>
     </footer>
 </body>
