@@ -1,14 +1,17 @@
 :root {
-    --page: #fff;
-    --text: #282724;
+    --page: #f5ecdd;
+    --text: #2e2115;
     --nav: #423b32;
     --muted: #494641;
     --accent: #594737;
     --button: #483b2e;
-    --surface: #faf8f4;
-    --tint: #f1e9dd;
-    --border: #e4dfd6;
-    --outline: #9b9388;
+    --surface: #f2e7d6;
+    --tint: #ebdcc6;
+    --border: #cbb193;
+    --outline: #8e745b;
+    --site-sand: #e4d2b9;
+    --site-gradient: linear-gradient(145deg, var(--site-sand), var(--surface) 70%);
+    --site-trim: linear-gradient(105deg, #eedfc9, #e2cbb0);
 }
 
 * {
@@ -81,9 +84,8 @@ header {
     background: var(--page);
 }
 
-body > header,
-.admin-page > .site-footer {
-    background: linear-gradient(105deg, #eedfc9, #e2cbb0);
+body > header {
+    background: var(--site-trim);
     border-bottom-color: #c6ab8e;
 }
 
@@ -285,7 +287,7 @@ footer {
 
 .site-footer {
     padding-block: clamp(24px, 4vw, 40px);
-    background: var(--surface);
+    background: var(--site-trim);
     font-size: 0.875rem;
 }
 
@@ -507,6 +509,12 @@ a:focus-visible, button:focus-visible {
 .landing-page {
     --landing-gold: #efc58a;
     --landing-ink: #2e2115;
+    --landing-sand: var(--site-sand);
+    --landing-edge: var(--border);
+    --landing-card: var(--page);
+    --landing-card-hover: var(--tint);
+    background: var(--site-gradient);
+    color: var(--landing-ink);
 }
 
 .landing-page .hero {
@@ -515,8 +523,8 @@ a:focus-visible, button:focus-visible {
     min-height: clamp(520px, 78svh, 920px);
     padding-block: 72px;
     background:
-        linear-gradient(90deg, rgb(36 33 23 / 96%), rgb(38 34 23 / 80%) 49%,
-            rgb(43 38 24 / 36%) 74%, rgb(43 38 24 / 6%)),
+        linear-gradient(90deg, rgb(46 33 21 / 96%), rgb(46 33 21 / 80%) 49%,
+            rgb(46 33 21 / 36%) 74%, rgb(46 33 21 / 6%)),
         var(--landing-photo) center 48% / cover;
     color: var(--landing-linen);
 }
@@ -560,32 +568,29 @@ a:focus-visible, button:focus-visible {
     padding-block: clamp(64px, 9vw, 136px);
 }
 
-.landing-intro {
-    background: linear-gradient(135deg, #efe2d0, var(--landing-linen) 72%);
-    border-bottom: 1px solid var(--border);
+.landing-page :is(.landing-intro, .landing-coverage, .landing-guides) {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--landing-edge);
 }
 
 .landing-page .strip {
-    border-bottom: 1px solid #d5c3aa;
-    background: #e8d9c2;
+    border-bottom: 1px solid var(--landing-edge);
+    background: var(--landing-sand);
 }
 
 .landing-page .strip .wrap {
     color: #413021;
 }
 
-.landing-coverage {
-    background: #f8f3e9;
+.landing-page :is(.landing-coverage .card, .blog-guide-link) {
+    border-color: var(--landing-edge);
+    background: var(--landing-card);
 }
 
-.landing-coverage .card {
-    border-color: #dfcfba;
-    background: var(--page);
-}
-
-.landing-coverage .card:is(:hover, :focus-visible) {
-    border-color: var(--accent);
-    background: var(--tint);
+.landing-page :is(.landing-coverage .card, .blog-guide-link):is(:hover, :focus-visible) {
+    border-color: var(--button);
+    background: var(--landing-card-hover);
 }
 
 .coverage-viewer[hidden] {
@@ -594,7 +599,7 @@ a:focus-visible, button:focus-visible {
 
 .coverage-viewer,
 .interior-page.insurance-guide {
-    background: linear-gradient(135deg, #eddfca, var(--landing-linen) 64%);
+    background: var(--site-gradient);
 }
 
 .coverage-viewer {
@@ -788,7 +793,7 @@ a:focus-visible, button:focus-visible {
 
 /* Interior pages */
 .interior-page {
-    background: var(--surface);
+    background: var(--site-gradient);
 }
 
 .interior-page .pagehead {
@@ -832,7 +837,7 @@ a:focus-visible, button:focus-visible {
     padding: clamp(16px, 3vw, 28px);
     border-inline-start: 4px solid var(--accent);
     border-radius: 0 14px 14px 0;
-    background: rgb(255 255 255 / 65%);
+    background: var(--page);
 }
 
 .guide-callout h2,
@@ -866,10 +871,6 @@ a:focus-visible, button:focus-visible {
 
 .coverage-overview .pagehead :is(.eyebrow, p) {
     color: #f2e4d1;
-}
-
-.profile-page {
-    background: linear-gradient(160deg, #efe5d7, var(--surface) 38rem);
 }
 
 .profile-main {
@@ -986,10 +987,6 @@ a:focus-visible, button:focus-visible {
 
 .carriers-page .eyebrow {
     color: var(--accent);
-}
-
-.blog-page {
-    background: linear-gradient(155deg, #f0e2d0, var(--landing-linen) 56%);
 }
 
 .blog-page .blog-heading {
@@ -1602,7 +1599,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .admin-page {
-    background: var(--surface);
+    background: var(--site-gradient);
 }
 
 .admin-page > .site-footer {
@@ -1614,7 +1611,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .admin-page main:has(#admin-login:not([hidden])) {
-    background: linear-gradient(135deg, #eddfca, var(--landing-linen) 72%, #f0e4d5);
+    background: var(--site-gradient);
 }
 
 .admin-page nav, .admin-page .wrap {
@@ -1989,10 +1986,6 @@ a:focus-visible, button:focus-visible {
     .testimonials-layout {
         grid-template-columns: minmax(0, 1fr);
     }
-}
-
-.contact-page {
-    background: linear-gradient(145deg, var(--tint), var(--surface) 72%);
 }
 
 .contact-hero {
