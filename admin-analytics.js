@@ -23,7 +23,7 @@ const analyticsDashboard = {
         }
     },
 
-    render([summary, pages, channels, devices, daily], [cities, countries, events] = []) {
+    render([summary, , , devices, daily], [cities] = []) {
         const totals = document.createElement('dl');
         totals.className = 'admin-metrics analytics-totals';
         const values = summary.rows?.[0]?.metricValues ?? [];
@@ -41,14 +41,9 @@ const analyticsDashboard = {
         note.textContent = `Last ${this.days.value} completed days. Today’s traffic is excluded.`;
         const grids = document.createElement('div');
         grids.className = 'analytics-breakdowns';
-        grids.append(
-            this.breakdown('Top pages', 'Page', 'Views', pages),
-            this.breakdown('Traffic channels', 'Channel', 'Sessions', channels),
-            this.breakdown('Devices', 'Device', 'Sessions', devices));
+        grids.append(this.breakdown('Devices', 'Device', 'Sessions', devices));
         this.panel.replaceChildren(note, totals, this.sessionChart(daily));
         if (cities) grids.append(this.breakdown('California cities', 'City', 'Sessions', cities));
-        if (countries) grids.append(this.breakdown('Top countries', 'Country', 'Sessions', countries));
-        if (events) grids.append(this.breakdown('Top events', 'Event', 'Count', events));
         this.panel.append(grids);
         const trend = document.createElement('details');
         trend.className = 'admin-record';

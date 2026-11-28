@@ -20,6 +20,7 @@
     <title>Home | BrodieInsures</title>
     <link rel="stylesheet" href="style.css">
     <script src="site.js" defer></script>
+    <script src="coverage-slides.js" defer></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                     <div class="dropmenu"><a href="home.html">Homeowners Insurance</a><a href="auto.html">Auto
                             Insurance</a><a href="rental.html">Rental Insurance</a><a href="umbrella.html">Umbrella
                             Insurance</a><a href="business.html">Business Insurance</a></div>
-                </div><a href="about.html">About Me</a><a href="resources.html">Resources</a>
+                </div><a href="about.html">About Me</a><a href="resources.html" hidden>Carriers</a><a href="blog.html">Blog</a>
                 <a href="testimonials.html">Testimonials</a><a href="contact.html">Contact</a>
             </div><a class="btn" href="quote.html">Get a Quote ↗</a>
         </nav>
@@ -53,6 +54,66 @@
                         <a class="btn secondary" href="coverage.html">Explore Coverage</a>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section class="coverage-viewer" id="carriers" aria-labelledby="carriers-title" hidden>
+            <div class="wrap">
+                <div class="coverage-viewer-heading">
+                    <h2 id="carriers-title" tabindex="-1">Carriers and insurance partners</h2>
+                    <button class="btn secondary" type="button" data-close-carriers>Close carriers</button>
+                </div>
+                <div class="coverage-slide">
+                    <ul class="carrier-grid" role="list">
+                    <li><img src="assets/carriers/mercury.svg" alt="">Mercury</li>
+                    <li><img src="assets/carriers/travelers.svg" alt="">Travelers</li>
+                    <li><img src="assets/carriers/foremost.png" alt="">Foremost</li>
+                    <li><img src="assets/carriers/aegis.png" alt="">Aegis</li>
+                    <li><img src="assets/carriers/progressive.png" alt="">Progressive</li>
+                    <li><img src="assets/carriers/hartford.png" alt="">The Hartford</li>
+                    <li><img src="assets/carriers/personalumbrella.png" alt="">PersonalUmbrella</li>
+                    <li><img src="assets/carriers/monoline.svg" alt="">Monoline Umbrella</li>
+                    <li><img src="assets/carriers/one-alliance.png" alt="">One Alliance</li>
+                    <li><img src="assets/carriers/stillwater.png" alt="">Stillwater</li>
+                    <li><img src="assets/carriers/delos.svg" alt="">Delos</li>
+                    <li><img src="assets/carriers/bamboo.png" alt="">Bamboo</li>
+                    <li><img src="assets/carriers/lightspeed.jpg" alt="">Lightspeed</li>
+                    <li><img src="assets/carriers/orion180.png" alt="">Orion180</li>
+                    <li><img src="assets/carriers/fair-plan.png" alt="">California FAIR Plan</li>
+                    <li><img src="assets/carriers/arrowhead.png" alt="">Arrowhead</li>
+                    <li><img src="assets/carriers/je-brown.png" alt="">J.E. Brown</li>
+                </ul>
+                    <section class="section carrier-inquiry" aria-labelledby="carrier-inquiry-heading">
+                <div>
+                    <h2 id="carrier-inquiry-heading">Have a carrier in mind?</h2>
+                    <p>Tell me who you’re with now or which carrier you’d like to ask about. I can help you
+                        check availability and compare the coverage options for your situation.</p>
+                </div>
+                <a class="btn" href="quote.html">Request a Free Quote</a>
+            </section>
+                </div>
+            </div>
+        </section>
+        <section class="coverage-viewer" id="insurance-guides" aria-labelledby="insurance-guides-title" hidden>
+            <div class="wrap">
+                <div class="coverage-viewer-heading">
+                    <h2 id="insurance-guides-title" tabindex="-1">Explore insurance</h2>
+                    <button class="btn secondary" type="button" data-close-coverage>Close guides</button>
+                </div>
+                <div class="coverage-viewer-controls">
+                    <div class="coverage-viewer-links" role="group" aria-label="Insurance types">
+                        <a href="home.html" data-guide="home">Homeowners</a>
+                        <a href="auto.html" data-guide="auto">Auto</a>
+                        <a href="rental.html" data-guide="rental">Renters</a>
+                        <a href="umbrella.html" data-guide="umbrella">Umbrella</a>
+                        <a href="business.html" data-guide="business">Business</a>
+                    </div>
+                    <div class="coverage-step-controls" role="group" aria-label="Browse insurance guides">
+                        <button class="btn secondary" type="button" data-coverage-step="-1">Previous</button>
+                        <button class="btn secondary" type="button" data-coverage-step="1">Next</button>
+                    </div>
+                </div>
+                <p class="coverage-viewer-status" role="status"></p>
+                <div class="coverage-slide" id="insurance-slide"></div>
             </div>
         </section>
         <div class="strip">
@@ -76,9 +137,9 @@
                         <a class="btn secondary" href="contact.html">Contact Me</a>
                     </div>
                 </div>
-                <img class="hero-portrait" src="assets/brodie-pebble-about.jpg"
-                    alt="Brodie Williams standing beside a sculpture at Pebble Beach"
-                    width="900" height="1080" loading="lazy" decoding="async">
+                <img class="hero-portrait" src="assets/brodie-professional-portrait.png"
+                    alt="Professional headshot of Brodie Williams"
+                    width="1025" height="1535" loading="lazy" decoding="async">
             </div>
         </section>
         <section class="section landing-coverage" aria-labelledby="coverage-heading">
@@ -117,6 +178,28 @@
                     </a></div>
             </div>
         </section>
+        <section class="section landing-guides" aria-labelledby="landing-guides-heading">
+            <div class="wrap">
+                <div class="blog-guide-heading">
+                    <h2 id="landing-guides-heading">California insurance guides</h2>
+                    <a class="blog-read" href="blog.html">Browse the blog <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="blog-guide-grid">
+                    <a class="blog-guide-link" href="why-california-auto-insurance-is-expensive.html">
+                        <img src="assets/france-auto-overlook.jpg" alt="Cars parked at a coastal overlook" loading="lazy">
+                        <span>Why did my auto premium go up? <span aria-hidden="true">↗</span></span>
+                    </a>
+                    <a class="blog-guide-link" href="california-home-insurance-fair-plan-alternatives.html">
+                        <img src="assets/blog-home-coverage.jpg" alt="Single-family home with a front yard" loading="lazy">
+                        <span>Can I get coverage outside the FAIR Plan? <span aria-hidden="true">↗</span></span>
+                    </a>
+                    <a class="blog-guide-link" href="california-home-insurance-before-closing.html">
+                        <img src="assets/blog-homebuyer.jpg" alt="House in a Los Angeles neighborhood" loading="lazy">
+                        <span>What insurance do I need before closing? <span aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="site-footer">
         <div class="wrap">
@@ -139,6 +222,227 @@
                 A quote request does not bind coverage.</small>
         </div>
     </footer>
+    <!-- Guide content for previews opened directly from disk. -->
+    <template id="guide-preview-home">
+        <article class="coverage-article guide-article">
+                <div class="guide-lead">
+                    <div>
+                        <h1>Homeowners Insurance in <span class="blue">California</span></h1>
+                        <p>Compare coverage for your house, condo, or high-value property. I’ll help you understand
+                            what’s available for your address and what each policy covers.</p>
+                        <a class="btn" href="quote.html?type=Homeowners">Request a Homeowners Quote</a>
+                    </div>
+                    <aside class="guide-callout">
+                        <h2>What to have handy</h2>
+                        <p>Start with the property address and the date you’d like coverage to begin. If you’re
+                            comparing a policy, have its limits and deductible handy.</p>
+                    </aside>
+                </div>
+
+                <section>
+                    <h2>Why homeowners insurance matters</h2>
+                    <p>A fire, break-in, or liability claim can bring unexpected costs. In Northern California,
+                        wildfire exposure can also affect which policies are available for your address. Reviewing
+                        the limits, deductibles, and exclusions up front can help you plan for those risks.</p>
+                </section>
+
+                <section>
+                    <h2>What can a homeowners policy cover?</h2>
+                    <ul>
+                        <li><strong>Dwelling and other structures.</strong> Helps repair or rebuild your home and
+                            structures such as a detached garage after a covered loss.</li>
+                        <li><strong>Personal property.</strong> Helps replace belongings such as furniture, clothing,
+                            and electronics after covered damage or theft.</li>
+                        <li><strong>Personal liability.</strong> Can help cover certain claims if you’re responsible
+                            for someone’s injury or damage to their property.</li>
+                        <li><strong>Additional living expenses.</strong> Can help pay for temporary housing and other
+                            eligible expenses if a covered loss makes your home unlivable.</li>
+                    </ul>
+                    <p>Depending on your property, it may be worth asking about separate flood or earthquake coverage,
+                        higher limits for valuables, or an <a class="blue" href="umbrella.html">umbrella policy</a>.
+                        If traditional coverage is hard to find, we can discuss wildfire options and how a Difference
+                        in Conditions policy may complement the California FAIR Plan.</p>
+                </section>
+
+                <section>
+                    <h2>What affects the cost of coverage?</h2>
+                    <p>Insurers may consider where your home is located, its age and condition, construction materials,
+                        estimated rebuilding cost, and your chosen limits and deductible.</p>
+                </section>
+
+            </article>
+    </template>
+    <template id="guide-preview-auto">
+        <article class="coverage-article guide-article">
+                <div class="guide-lead">
+                    <div>
+                        <h1>Auto Insurance in <span class="blue">California</span></h1>
+                        <p>Buying a car or reviewing your renewal? I’ll help you compare coverage for the cars
+                            you drive, the people who drive them, and your budget.</p>
+                        <a class="btn" href="quote.html?type=Auto">Request an Auto Quote</a>
+                    </div>
+                    <aside class="guide-callout">
+                        <h2>What to have handy</h2>
+                        <p>Start with the vehicles you drive and the people who drive them. If you’re comparing
+                            a policy, have its limits and deductibles handy.</p>
+                    </aside>
+                </div>
+
+                <section>
+                    <h2>What can auto insurance cover?</h2>
+                    <ul>
+                        <li><strong>Liability.</strong> Helps cover eligible injury and property damage claims if you cause an accident.</li>
+                        <li><strong>Collision.</strong> Helps pay to repair or replace your car after a covered collision.</li>
+                        <li><strong>Comprehensive.</strong> Helps cover theft, vandalism, hail, and other covered damage outside a collision.</li>
+                        <li><strong>Uninsured and underinsured motorist.</strong> Can help cover certain losses when an at-fault driver has too little insurance or none.</li>
+                        <li><strong>Medical payments (MedPay).</strong> Can help with eligible medical expenses for you and your passengers after an accident.</li>
+                    </ul>
+                    <p>We can also compare rental reimbursement and check whether bundling home and auto makes sense for you.</p>
+                </section>
+
+            </article>
+    </template>
+    <template id="guide-preview-rental">
+        <article class="coverage-article guide-article">
+                <div class="guide-lead">
+                    <div>
+                        <h1>Renters Insurance in <span class="blue">California</span></h1>
+                        <p>I’ll help you compare policies for your belongings and review any insurance requirements
+                            in your lease.</p>
+                        <a class="btn" href="quote.html?type=Rental">Request a Renters Quote</a>
+                    </div>
+                    <aside class="guide-callout">
+                        <h2>Signing a lease?</h2>
+                        <p>Have your rental address, move-in date, lease requirements, and an estimate of what your
+                            belongings would cost to replace.</p>
+                    </aside>
+                </div>
+
+                <section>
+                    <h2>What can renters insurance cover?</h2>
+                    <ul>
+                        <li><strong>Personal belongings.</strong> Coverage can help replace items such as
+                            furniture, clothes, and electronics after a covered event such as a fire or theft.
+                            We can compare policies that account for depreciation with options that pay based
+                            on replacement cost.</li>
+                        <li><strong>Personal liability.</strong> This can help with eligible claims if you’re
+                            responsible for someone’s injury or damage to their property. For example, we can
+                            discuss how a policy might respond if a guest is injured in your rental.</li>
+                        <li><strong>Additional living expenses.</strong> If a covered loss makes your rental
+                            unlivable, this coverage can help with eligible costs such as a hotel stay or
+                            temporary rental, subject to policy limits.</li>
+                    </ul>
+                    <p>The property owner generally insures the building. A renters policy is where you can
+                        look for coverage for your own belongings, personal liability, and temporary living expenses.</p>
+                </section>
+
+                <section>
+                    <h2>What should you check before choosing a policy?</h2>
+                    <ul>
+                        <li><strong>Lease requirements.</strong> If your lease specifies a liability limit or asks
+                            for proof of coverage, have that language handy when we compare quotes.</li>
+                        <li><strong>Belongings and deductibles.</strong> Make a rough inventory of what it would
+                            cost to replace your belongings. Ask about limits on items such as jewelry and what
+                            deductible you would pay after a covered loss.</li>
+                        <li><strong>Roommates and exclusions.</strong> Check who is insured if you share the rental.
+                            We can also review exclusions and discuss whether separate flood or earthquake
+                            coverage is worth exploring for your address.</li>
+                    </ul>
+                </section>
+
+            </article>
+    </template>
+    <template id="guide-preview-umbrella">
+        <article class="coverage-article guide-article">
+                <div class="guide-lead">
+                    <div>
+                        <h1>Umbrella Insurance in <span class="blue">California</span></h1>
+                        <p>I’ll help you review your current liability limits and decide whether extra coverage makes
+                            sense for your household.</p>
+                        <a class="btn" href="quote.html?type=Umbrella">Request an Umbrella Quote</a>
+                    </div>
+                    <aside class="guide-callout">
+                        <h2>Start with what you have</h2>
+                        <p>Have the declarations pages for your home, auto, and any rental property policies available.</p>
+                    </aside>
+                </div>
+
+                <section>
+                    <h2>How does umbrella insurance work?</h2>
+                    <p>A personal umbrella policy can provide additional liability limits above qualifying auto,
+                        homeowners, or landlord policies. If a covered claim exceeds the underlying policy’s
+                        liability limit, the umbrella may help pay the remaining covered amount, up to its own limit.</p>
+                    <p>For example, after a serious auto accident for which you’re responsible, an umbrella policy
+                        may help if eligible injury claims exceed your auto liability limit. It generally won’t pay
+                        to repair your own car or home.</p>
+                </section>
+
+                <section>
+                    <h2>What should you check before choosing a policy?</h2>
+                    <ul>
+                        <li><strong>Required liability limits.</strong> Umbrella insurers often require specific
+                            minimum limits on the policies underneath. We’ll check your current limits and see
+                            whether any need to change.</li>
+                        <li><strong>Who and what is included.</strong> We can review household drivers, vehicles,
+                            and rental properties. A rental property may need to be listed or covered under a
+                            qualifying landlord policy.</li>
+                        <li><strong>Exclusions and separate policies.</strong> Ask how the policy treats activities
+                            such as short-term rentals or business use of a vehicle. Commercial exposures may
+                            call for separate <a class="blue" href="business.html">business coverage</a>.</li>
+                    </ul>
+                </section>
+
+            </article>
+    </template>
+    <template id="guide-preview-business">
+        <article class="coverage-article guide-article">
+                <div class="guide-lead">
+                    <div>
+                        <h1>Business Insurance in <span class="blue">California</span></h1>
+                        <p>I’ll help you compare insurance based on how your business operates, where you work,
+                            and what you own.</p>
+                        <a class="btn" href="quote.html?type=Business">Request a Business Quote</a>
+                    </div>
+                    <aside class="guide-callout">
+                        <h2>Tell me how you work</h2>
+                        <p>Start with what you do and where you do it. Mention any employees, vehicles, equipment,
+                            or insurance requirements in a lease or contract.</p>
+                    </aside>
+                </div>
+
+                <section>
+                    <h2>What can business insurance cover?</h2>
+                    <ul>
+                        <li><strong>General liability.</strong> Can help with covered claims involving injury to
+                            someone outside the business or damage to someone else’s property. A customer slipping
+                            in a shop is one example.</li>
+                        <li><strong>Commercial property.</strong> Can help repair or replace covered business
+                            property, such as equipment, inventory, and a building you own, after an insured loss.
+                            If you lease your space, we can review which property you’re responsible for insuring.</li>
+                        <li><strong>Business owners policy (BOP).</strong> For eligible businesses, a BOP can
+                            combine general liability and commercial property coverage. It may also include business
+                            income coverage for an interruption caused by a covered event.</li>
+                        <li><strong>Workers’ compensation.</strong> Can help pay eligible medical costs and wage
+                            benefits after a work-related injury or illness.</li>
+                        <li><strong>Professional liability.</strong> Can help with certain claims alleging an
+                            error or omission in the professional services you provide.</li>
+                        <li><strong>Commercial auto.</strong> Can cover eligible vehicles used for business.
+                            Tell me who drives them and whether your team uses personal or rented vehicles for work.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>What should we review together?</h2>
+                    <p>We’ll start with your day-to-day operations, including what you sell or do, where you work,
+                        and who works for you. If a lease or client contract asks for specific liability limits,
+                        proof of insurance, or additional insured status, bring those requirements so we can use
+                        them when comparing quotes.</p>
+                    <p>It’s worth revisiting your coverage when you open a location, hire employees, add a vehicle,
+                        or take on a new kind of work. Those changes can affect which policies and limits fit your business.</p>
+                </section>
+
+            </article>
+    </template>
 </body>
 
 </html>

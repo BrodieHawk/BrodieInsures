@@ -10,6 +10,19 @@ document.querySelectorAll('.drop-toggle').forEach(button => {
     });
 });
 
+if (!document.querySelector('.landing-page')) {
+    const carriers = document.querySelector('.links a[href="resources.html"]:not([aria-current])');
+    if (carriers) carriers.href = 'index.html#carriers';
+    document.querySelectorAll('.links .dropdown a').forEach(link => {
+        const file = link.getAttribute('href');
+        const guides = { 'coverage.html': 'home', 'home.html': 'home', 'auto.html': 'auto',
+            'rental.html': 'rental', 'umbrella.html': 'umbrella', 'business.html': 'business' };
+        const guide = guides[file];
+        if (!guide) return;
+        link.href = `index.html#insurance-${guide}`;
+    });
+}
+
 document.addEventListener('click', event => {
     if (!event.target.closest('.dropdown')) {
         document.querySelectorAll('.dropdown.open').forEach(dropdown => {
