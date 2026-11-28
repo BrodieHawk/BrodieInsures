@@ -78,6 +78,15 @@
                             <section id="quotes" class="admin-work-section" aria-labelledby="quotes-heading">
                                 <div class="review-admin-toolbar admin-section-heading">
                                     <h2 id="quotes-heading" tabindex="-1">Quote requests</h2>
+                                </div>
+                                <form class="admin-queue-search" data-search-form>
+                                    <label>Search quotes
+                                        <input type="search" maxlength="100" data-queue-search placeholder="Name, email, phone, or address" autocomplete="off">
+                                    </label>
+                                    <button class="btn secondary" type="submit">Search</button>
+                                    <button class="btn secondary" type="button" data-clear-search hidden>Clear</button>
+                                </form>
+                                <div class="admin-queue-filters">
                                     <label>Stage
                                         <select id="quote-filter">
                                             <option value="all">All stages</option>
@@ -87,6 +96,23 @@
                                             <option value="quote_sent">Quote sent</option>
                                             <option value="won">Won</option>
                                             <option value="closed">Closed</option>
+                                        </select>
+                                    </label>
+                                    <label>Coverage
+                                        <select id="quote-coverage-filter">
+                                            <option value="all">All coverage</option>
+                                            <option>Homeowners</option>
+                                            <option>Auto</option>
+                                            <option value="Rental">Renters</option>
+                                            <option>Umbrella</option>
+                                            <option>Business</option>
+                                        </select>
+                                    </label>
+                                    <label>Sort by date
+                                        <select data-queue-sort>
+                                            <option value="default">Default</option>
+                                            <option value="desc">Newest first</option>
+                                            <option value="asc">Oldest first</option>
                                         </select>
                                     </label>
                                 </div>
@@ -100,6 +126,15 @@
                             <section id="reviews" class="admin-work-section" aria-labelledby="reviews-heading">
                                 <div class="review-admin-toolbar admin-section-heading">
                                     <h2 id="reviews-heading">Testimonials</h2>
+                                </div>
+                                <form class="admin-queue-search" data-search-form>
+                                    <label>Search testimonials
+                                        <input type="search" maxlength="100" data-queue-search placeholder="Name, email, city, or review text" autocomplete="off">
+                                    </label>
+                                    <button class="btn secondary" type="submit">Search</button>
+                                    <button class="btn secondary" type="button" data-clear-search hidden>Clear</button>
+                                </form>
+                                <div class="admin-queue-filters">
                                     <label>Status
                                         <select id="review-filter">
                                             <option value="pending">Pending</option>
@@ -107,6 +142,13 @@
                                             <option value="approved">Published</option>
                                             <option value="rejected">Rejected</option>
                                             <option value="removed">Removed</option>
+                                        </select>
+                                    </label>
+                                    <label>Sort by date
+                                        <select data-queue-sort>
+                                            <option value="default">Default</option>
+                                            <option value="desc">Newest first</option>
+                                            <option value="asc">Oldest first</option>
                                         </select>
                                     </label>
                                 </div>
@@ -128,6 +170,7 @@
             <div class="footerrow">
                 <div class="site-footer-brand">
                     <strong>© 2026 BrodieInsures</strong>
+                    <span>Insurance agent with Placer West Insurance Services</span>
                     <span>California Insurance License #4523741</span>
                 </div>
                 <div class="site-footer-meta">

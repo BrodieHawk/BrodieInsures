@@ -18,18 +18,24 @@ const metricQueries = {
 };
 const filters = document.querySelector('#review-filter');
 const quoteFilter = document.querySelector('#quote-filter');
+const quoteCoverage = document.querySelector('#quote-coverage-filter');
 const pageSize = 5;
 const queues = Object.fromEntries(['reviews', 'quotes'].map(name => {
     const section = document.getElementById(name);
     return [name, {
         name,
         filter: name === 'reviews' ? filters : quoteFilter,
+        sort: section.querySelector('[data-queue-sort]'),
+        searchForm: section.querySelector('[data-search-form]'),
+        search: section.querySelector('[data-queue-search]'),
+        clearSearch: section.querySelector('[data-clear-search]'),
         list: section.querySelector('[data-queue-list]'),
         pagination: section.querySelector('[data-pagination]'),
         previous: section.querySelector('[data-previous]'),
         next: section.querySelector('[data-next]'),
         pageLabel: section.querySelector('[data-page]'),
         page: 0,
+        keywords: '',
         hasNext: false
     }];
 }));
@@ -45,6 +51,9 @@ function showLogin(message) {
         panel.pagination.hidden = true;
         panel.page = 0;
         panel.hasNext = false;
+        panel.keywords = '';
+        panel.search.value = '';
+        panel.clearSearch.hidden = true;
     }
     analyticsDashboard.panel.replaceChildren();
     metricNodes.forEach(node => { node.textContent = '—'; });
@@ -77,20 +86,37 @@ function showError(error, message) {
     status.textContent = message;
 }
 
+function submissionSearch(keywords, columns) {
+    const terms = keywords.split(/[\s*]+/).filter(Boolean).slice(0, 5);
+    if (!terms.length) return '';
+    const groups = terms.map(term => {
+        const wildcardSafe = term.replace(/[\\%_]/g, '\\$&');
+        const pattern = JSON.stringify('%' + wildcardSafe + '%');
+        return 'or(' + columns.map(column => column + '.ilike.' + pattern).join(',') + ')';
+    });
+    return '&' + new URLSearchParams({ and: '(' + groups.join(',') + ')' });
+}
+
 async function loadQueue(panel, activeToken) {
     const isReviews = panel.name === 'reviews';
     const { list, pagination } = panel;
     const restriction = isReviews && filters.value !== 'all' ? '&status=eq.' + filters.value : '';
+    const coverage = quoteCoverage.value === 'all' ? '' : '&coverage=eq.' + encodeURIComponent(quoteCoverage.value);
     const quoteFields = quotesPath + '?select=id,coverage,first_name,last_name,email,phone,property_address,message,submitted_at';
     const quoteRestriction = quoteFilter.value === 'all' ? '' : '&stage=eq.' + quoteFilter.value;
     const path = isReviews
         ? reviewsPath + '?select=id,first_name,last_name,email,city,rating,review,status,submitted_at' + restriction
         : quoteFields + ',stage,admin_notes,workflow_updated_at' + quoteRestriction;
-    const direction = isReviews && filters.value === 'pending' ? 'asc' : 'desc';
+    const defaultDirection = isReviews && filters.value === 'pending' ? 'asc' : 'desc';
+    const direction = panel.sort.value === 'default' ? defaultDirection : panel.sort.value;
+    const columns = isReviews
+        ? ['first_name', 'last_name', 'email', 'city', 'review']
+        : ['first_name', 'last_name', 'email', 'phone', 'property_address', 'message'];
+    const criteria = (isReviews ? '' : coverage) + submissionSearch(panel.keywords, columns);
     const paging = `&order=submitted_at.${direction},id.${direction}&limit=${pageSize + 1}&offset=${panel.page * pageSize}`;
     let records;
     try {
-        records = await reviewsApi.request(path + paging, { token: activeToken });
+        records = await reviewsApi.request(path + criteria + paging, { token: activeToken });
         if (!isReviews && token === activeToken) quoteWorkflowAvailable = true;
     } catch (error) {
         if (isReviews) throw error;
@@ -102,7 +128,7 @@ async function loadQueue(panel, activeToken) {
             return;
         }
         if (error.code !== '42703' && error.code !== 'PGRST204') throw error;
-        records = await reviewsApi.request(quoteFields + paging, { token: activeToken });
+        records = await reviewsApi.request(quoteFields + criteria + paging, { token: activeToken });
         if (token === activeToken) {
             quoteWorkflowAvailable = false;
             quoteFilter.value = 'all';
@@ -125,7 +151,7 @@ async function loadQueue(panel, activeToken) {
     }
     if (!records.length) {
         const empty = document.createElement('p');
-        empty.textContent = isReviews ? 'No reviews in this view.' : 'No quote requests yet.';
+        empty.textContent = isReviews ? 'No testimonials match this view.' : 'No quote requests match this view.';
         list.append(empty);
     }
 }
@@ -335,7 +361,10 @@ function setQueueBusy(busy) {
     filters.disabled = busy;
     analyticsDashboard.days.disabled = busy;
     quoteFilter.disabled = busy || !quoteWorkflowAvailable;
+    quoteCoverage.disabled = busy;
     for (const panel of Object.values(queues)) {
+        panel.sort.disabled = busy;
+        panel.search.disabled = busy;
         panel.previous.disabled = busy || panel.page === 0;
         panel.next.disabled = busy || !panel.hasNext;
     }
@@ -435,10 +464,31 @@ async function refreshDashboard(section) {
 
 refresh.addEventListener('click', () => refreshDashboard());
 analyticsDashboard.days.addEventListener('change', () => refreshDashboard('analytics'));
+quoteCoverage.addEventListener('change', () => {
+    queues.quotes.page = 0;
+    refreshDashboard('quotes');
+});
 for (const panel of Object.values(queues)) {
-    panel.filter.addEventListener('change', () => {
+    const applyFilters = () => {
         panel.page = 0;
-        refreshDashboard(panel.name);
+        return refreshDashboard(panel.name);
+    };
+    panel.filter.addEventListener('change', applyFilters);
+    panel.sort.addEventListener('change', applyFilters);
+    panel.searchForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (panel.search.disabled) return;
+        panel.keywords = panel.search.value.trim();
+        panel.clearSearch.hidden = !panel.keywords;
+        await applyFilters();
+        if (token) panel.search.focus();
+    });
+    panel.clearSearch.addEventListener('click', async () => {
+        panel.search.value = '';
+        panel.keywords = '';
+        panel.clearSearch.hidden = true;
+        await applyFilters();
+        if (token) panel.search.focus();
     });
     panel.previous.addEventListener('click', () => {
         panel.page -= 1;
